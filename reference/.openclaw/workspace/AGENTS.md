@@ -80,6 +80,13 @@ On platforms that support reactions (Discord, Slack), use emoji reactions natura
 
 Skills provide your tools. When you need one, check its `SKILL.md`. Keep local notes (camera names, SSH details, voice preferences) in `TOOLS.md`.
 
+### Main and Discord
+
+- Main is the only user-facing agent.
+- Discord routes to Main because Main is the default agent and no competing channel bindings are configured.
+- Main owns Discord replies, threads, and the final response to the user.
+- Never place bot tokens, user IDs, guild IDs, or private Discord state in workspace files.
+
 **Voice storytelling:** if you have `sag` (ElevenLabs TTS), use voice for stories, movie summaries, and storytime moments - more engaging than walls of text.
 
 **Platform formatting:**

@@ -5,6 +5,7 @@ repo_root=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
 reference_root="$repo_root/reference/.openclaw"
 
 required_paths=(
+  ".env.example"
   "acpx/README.md"
   "agents/README.md"
   "agents/main/README.md"
@@ -49,6 +50,45 @@ for relative_path in "${required_paths[@]}"; do
     exit 1
   fi
 done
+
+if [[ $(<"$reference_root/.env.example") != "DISCORD_BOT_TOKEN=" ]]; then
+  echo ".env.example must declare an empty DISCORD_BOT_TOKEN" >&2
+  exit 1
+fi
+
+config_path="$reference_root/openclaw.example.json5"
+
+if ! jq -e '
+  (.agents.list | length) == 1 and
+  .agents.list[0].id == "main" and
+  .agents.list[0].default == true and
+  .agents.list[0].name == "Main" and
+  .bindings == [] and
+  .channels.discord.enabled == true and
+  .channels.discord.token == {
+    "source": "env",
+    "provider": "default",
+    "id": "DISCORD_BOT_TOKEN"
+  } and
+  .channels.discord.dmPolicy == "allowlist" and
+  .channels.discord.groupPolicy == "allowlist" and
+  .channels.discord.allowFrom == ["<DISCORD_USER_ID>"] and
+  (.channels.discord.guilds | keys) == ["<DISCORD_GUILD_ID>"] and
+  .channels.discord.guilds["<DISCORD_GUILD_ID>"].users == ["<DISCORD_USER_ID>"]
+' "$config_path" >/dev/null; then
+  echo "example config must define one default Main agent and allowlisted Discord access" >&2
+  exit 1
+fi
+
+if command -v openclaw >/dev/null 2>&1; then
+  if ! DISCORD_BOT_TOKEN=validation-placeholder \
+    openclaw config patch --file "$config_path" --replace-path agents.list --dry-run >/dev/null; then
+    echo "OpenClaw rejected the example configuration" >&2
+    exit 1
+  fi
+else
+  echo "warning: OpenClaw is not installed; skipped schema validation" >&2
+fi
 
 expected_top_level_directories=(
   "acpx"

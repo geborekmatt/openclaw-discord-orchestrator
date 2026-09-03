@@ -6,13 +6,18 @@ A portfolio project documenting and building a real OpenClaw architecture where 
 
 This repository evolves in reviewable stages:
 
-1. Mirror a fresh OpenClaw installation without publishing private runtime data.
-2. Configure Main as the only Discord-facing agent.
+1. ✅ Mirror a fresh OpenClaw installation without publishing private runtime data.
+2. ✅ Configure Main as the only Discord-facing agent.
 3. Add persistent specialists such as Cody and Bizzy.
 4. Add controlled internal delegation.
 5. Add Main-owned, specialist-scoped ACP threads for coding work.
 6. Add permission-based shared skills.
 
+## Current milestone
+
+This milestone configures Main as the only Discord-facing agent. It adds a safe Discord configuration, environment-secret example, Main's public role files, and validation for the single-interface routing model.
+
+See [Main-only Discord setup](docs/MAIN-DISCORD-SETUP.md).
 
 The reference includes OpenClaw's default workspace files, safe example configuration, and the common runtime directories present in a working installation. Generated or private areas—credentials, devices, Discord state, sessions, SQLite state, logs, approval sockets, Git metadata, and attestations—are represented with explanatory files rather than copied from a live installation.
 
@@ -20,6 +25,7 @@ The reference includes OpenClaw's default workspace files, safe example configur
 
 ```text
 reference/.openclaw/
+├── .env.example
 ├── acpx/README.md
 ├── agents/
 │   ├── README.md
