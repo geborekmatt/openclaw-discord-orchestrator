@@ -1,0 +1,57 @@
+version: 1
+baseline:
+  openclaw_version: 2026.7.1-2
+  command: OPENCLAW_STATE_DIR=<TEMP_STATE_DIR> openclaw setup --baseline --workspace <TEMP_STATE_DIR>/workspace --json
+
+publish_verbatim:
+  - workspace/AGENTS.md
+  - workspace/BOOTSTRAP.md
+  - workspace/HEARTBEAT.md
+  - workspace/IDENTITY.md
+  - workspace/SOUL.md
+  - workspace/TOOLS.md
+  - workspace/USER.md
+
+publish_sanitized:
+  - openclaw.json -> openclaw.example.json5
+  - exec-approvals.json -> exec-approvals.example.json
+  - workspace/openclaw-workspace-state.json -> workspace/openclaw-workspace-state.example.json
+
+publish_fictional_examples:
+  - workspace/state/sessions/*.example.json
+
+represent_with_documentation:
+  - acpx/
+  - agents/main/sessions/
+  - audit/
+  - completions/
+  - credentials/
+  - crestodian/
+  - devices/
+  - discord/
+  - identity/
+  - logs/
+  - media/
+  - npm/
+  - pirateship-debug-profile/
+  - plugin-skills/
+  - service-env/
+  - skill-workshop/
+  - state/
+  - tmp/
+  - tui/
+  - workspace/.git/
+  - workspace/state/sessions/
+  - workspace-attestations/
+
+never_publish:
+  - .env
+  - "**/MEMORY.md"
+  - "**/memory/**"
+  - "**/sessions/**"
+  - "**/*.sqlite*"
+  - "**/*.jsonl"
+  - "**/*.log"
+  - "**/*.attested"
+  - "**/.git/**"
+  - real tokens, IDs, paths, or timestamps

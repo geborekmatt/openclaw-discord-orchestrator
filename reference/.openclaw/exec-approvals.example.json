@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "socket": {
+    "path": "<STATE_DIR>/exec-approvals.sock"
+  },
+  "defaults": {},
+  "agents": {}
+}

@@ -1,0 +1,41 @@
+{
+  "schema": "acpx.session.v1",
+  "acpx_record_id": "<ACPX_RECORD_ID>",
+  "acp_session_id": "<ACP_SESSION_ID>",
+  "agent_command": "<ACP_AGENT_COMMAND>",
+  "cwd": "<SPECIALIST_WORKSPACE_PATH>",
+  "name": "example-coding-session",
+  "created_at": "2026-01-01T00:00:00.000Z",
+  "last_used_at": "2026-01-01T00:00:00.000Z",
+  "last_seq": 0,
+  "event_log": {
+    "active_path": "<SESSION_EVENT_LOG_PATH>",
+    "segment_count": 0,
+    "max_segment_bytes": 0,
+    "max_segments": 0,
+    "last_write_error": null
+  },
+  "closed": false,
+  "closed_at": null,
+  "pid": 0,
+  "agent_started_at": "2026-01-01T00:00:00.000Z",
+  "protocol_version": 1,
+  "agent_capabilities": {
+    "loadSession": true,
+    "promptCapabilities": {},
+    "mcpCapabilities": {},
+    "sessionCapabilities": {},
+    "auth": {}
+  },
+  "title": null,
+  "messages": [],
+  "updated_at": "2026-01-01T00:00:00.000Z",
+  "cumulative_token_usage": {},
+  "request_token_usage": {},
+  "acpx": {
+    "current_model_id": "<MODEL_ID>",
+    "available_models": [],
+    "model_control": "select",
+    "config_options": []
+  }
+}
