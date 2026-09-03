@@ -4,13 +4,15 @@ baseline:
   command: OPENCLAW_STATE_DIR=<TEMP_STATE_DIR> openclaw setup --baseline --workspace <TEMP_STATE_DIR>/workspace --json
 
 publish_verbatim:
-  - workspace/AGENTS.md
   - workspace/BOOTSTRAP.md
   - workspace/HEARTBEAT.md
-  - workspace/IDENTITY.md
-  - workspace/SOUL.md
   - workspace/TOOLS.md
   - workspace/USER.md
+
+publish_project_configuration:
+  - workspace/AGENTS.md
+  - workspace/IDENTITY.md
+  - workspace/SOUL.md
 
 publish_sanitized:
   - openclaw.json -> openclaw.example.json5
@@ -18,6 +20,7 @@ publish_sanitized:
   - workspace/openclaw-workspace-state.json -> workspace/openclaw-workspace-state.example.json
 
 publish_fictional_examples:
+  - .env.example
   - workspace/state/sessions/*.example.json
 
 represent_with_documentation:
