@@ -13,19 +13,41 @@ publish_project_configuration:
   - workspace/AGENTS.md
   - workspace/IDENTITY.md
   - workspace/SOUL.md
+  - workspace-cody/AGENTS.md
+  - workspace-cody/HEARTBEAT.md
+  - workspace-cody/IDENTITY.md
+  - workspace-cody/SOUL.md
+  - workspace-cody/TOOLS.md
+  - workspace-cody/USER.md
+  - workspace-bizzy/AGENTS.md
+  - workspace-bizzy/HEARTBEAT.md
+  - workspace-bizzy/IDENTITY.md
+  - workspace-bizzy/SOUL.md
+  - workspace-bizzy/TOOLS.md
+  - workspace-bizzy/USER.md
 
 publish_sanitized:
   - openclaw.json -> openclaw.example.json5
   - exec-approvals.json -> exec-approvals.example.json
   - workspace/openclaw-workspace-state.json -> workspace/openclaw-workspace-state.example.json
+  - workspace-cody/openclaw-workspace-state.json -> workspace-cody/openclaw-workspace-state.example.json
+  - workspace-bizzy/openclaw-workspace-state.json -> workspace-bizzy/openclaw-workspace-state.example.json
 
 publish_fictional_examples:
   - .env.example
+  - workspace-cody/MEMORY.example.md
+  - workspace-cody/memory/*.example.md
+  - workspace-bizzy/MEMORY.example.md
+  - workspace-bizzy/memory/*.example.md
   - workspace/state/sessions/*.example.json
 
 represent_with_documentation:
   - acpx/
   - agents/main/sessions/
+  - agents/cody/agent/
+  - agents/cody/sessions/
+  - agents/bizzy/agent/
+  - agents/bizzy/sessions/
   - audit/
   - completions/
   - credentials/
@@ -45,13 +67,18 @@ represent_with_documentation:
   - tui/
   - workspace/.git/
   - workspace/state/sessions/
+  - workspace-cody/.git/
+  - workspace-cody/memory/
+  - workspace-bizzy/.git/
+  - workspace-bizzy/memory/
   - workspace-attestations/
 
 never_publish:
   - .env
   - "**/MEMORY.md"
-  - "**/memory/**"
-  - "**/sessions/**"
+  - "**/memory/*.md unless named README.md or *.example.md"
+  - "**/sessions/*.json unless named *.example.json"
+  - "**/sessions/*.jsonl"
   - "**/*.sqlite*"
   - "**/*.jsonl"
   - "**/*.log"

@@ -5,7 +5,11 @@
 **/openclaw.json
 **/exec-approvals.json
 **/MEMORY.md
-**/memory/
+**/memory/*
+!reference/.openclaw/workspace-cody/memory/README.md
+!reference/.openclaw/workspace-cody/memory/*.example.md
+!reference/.openclaw/workspace-bizzy/memory/README.md
+!reference/.openclaw/workspace-bizzy/memory/*.example.md
 
 # Runtime state
 **/sessions/*
@@ -58,6 +62,8 @@ reference/.openclaw/tmp/*
 !reference/.openclaw/tmp/README.md
 reference/.openclaw/tui/*
 !reference/.openclaw/tui/README.md
+reference/.openclaw/agents/*/agent/*
+!reference/.openclaw/agents/*/agent/README.md
 
 # Nested repositories and generated state
 **/.git/**

@@ -8,6 +8,16 @@
         "id": "main",
         "default": true,
         "name": "Main"
+      },
+      {
+        "id": "cody",
+        "name": "Cody",
+        "workspace": "~/.openclaw/workspace-cody"
+      },
+      {
+        "id": "bizzy",
+        "name": "Bizzy",
+        "workspace": "~/.openclaw/workspace-bizzy"
       }
     ]
   },
