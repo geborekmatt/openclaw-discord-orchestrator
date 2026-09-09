@@ -87,6 +87,13 @@ Skills provide your tools. When you need one, check its `SKILL.md`. Keep local n
 - Main owns Discord replies, threads, and the final response to the user.
 - Never place bot tokens, user IDs, guild IDs, or private Discord state in workspace files.
 
+### Persistent specialists
+
+- `cody` owns software engineering and keeps durable technical context in `workspace-cody`.
+- `bizzy` owns business strategy and operations and keeps durable business context in `workspace-bizzy`.
+- Specialists have no Discord bindings and are never direct user-facing interfaces.
+- Agent-to-agent delegation permissions are configured in a later milestone.
+
 **Voice storytelling:** if you have `sag` (ElevenLabs TTS), use voice for stories, movie summaries, and storytime moments - more engaging than walls of text.
 
 **Platform formatting:**

@@ -8,6 +8,12 @@ required_paths=(
   ".env.example"
   "acpx/README.md"
   "agents/README.md"
+  "agents/bizzy/README.md"
+  "agents/bizzy/agent/README.md"
+  "agents/bizzy/sessions/README.md"
+  "agents/cody/README.md"
+  "agents/cody/agent/README.md"
+  "agents/cody/sessions/README.md"
   "agents/main/README.md"
   "agents/main/sessions/README.md"
   "audit/README.md"
@@ -42,6 +48,28 @@ required_paths=(
   "workspace/state/sessions/README.md"
   "workspace/state/sessions/agent%3Acodex%3Aacp%3Aexample-session.example.json"
   "workspace-attestations/README.md"
+  "workspace-bizzy/AGENTS.md"
+  "workspace-bizzy/GIT-STATE.md"
+  "workspace-bizzy/HEARTBEAT.md"
+  "workspace-bizzy/IDENTITY.md"
+  "workspace-bizzy/MEMORY.example.md"
+  "workspace-bizzy/SOUL.md"
+  "workspace-bizzy/TOOLS.md"
+  "workspace-bizzy/USER.md"
+  "workspace-bizzy/memory/README.md"
+  "workspace-bizzy/memory/2026-01-01.example.md"
+  "workspace-bizzy/openclaw-workspace-state.example.json"
+  "workspace-cody/AGENTS.md"
+  "workspace-cody/GIT-STATE.md"
+  "workspace-cody/HEARTBEAT.md"
+  "workspace-cody/IDENTITY.md"
+  "workspace-cody/MEMORY.example.md"
+  "workspace-cody/SOUL.md"
+  "workspace-cody/TOOLS.md"
+  "workspace-cody/USER.md"
+  "workspace-cody/memory/README.md"
+  "workspace-cody/memory/2026-01-01.example.md"
+  "workspace-cody/openclaw-workspace-state.example.json"
 )
 
 for relative_path in "${required_paths[@]}"; do
@@ -59,10 +87,19 @@ fi
 config_path="$reference_root/openclaw.example.json5"
 
 if ! jq -e '
-  (.agents.list | length) == 1 and
+  (.agents.list | length) == 3 and
   .agents.list[0].id == "main" and
   .agents.list[0].default == true and
   .agents.list[0].name == "Main" and
+  .agents.list[1].id == "cody" and
+  .agents.list[1].name == "Cody" and
+  .agents.list[1].workspace == "~/.openclaw/workspace-cody" and
+  (.agents.list[1].default // false) == false and
+  .agents.list[2].id == "bizzy" and
+  .agents.list[2].name == "Bizzy" and
+  .agents.list[2].workspace == "~/.openclaw/workspace-bizzy" and
+  (.agents.list[2].default // false) == false and
+  ([.agents.list[] | select(.default == true) | .id] == ["main"]) and
   .bindings == [] and
   .channels.discord.enabled == true and
   .channels.discord.token == {
@@ -76,7 +113,7 @@ if ! jq -e '
   (.channels.discord.guilds | keys) == ["<DISCORD_GUILD_ID>"] and
   .channels.discord.guilds["<DISCORD_GUILD_ID>"].users == ["<DISCORD_USER_ID>"]
 ' "$config_path" >/dev/null; then
-  echo "example config must define one default Main agent and allowlisted Discord access" >&2
+  echo "example config must define Main, Cody, and Bizzy with only Main as the Discord-facing default" >&2
   exit 1
 fi
 
@@ -112,6 +149,8 @@ expected_top_level_directories=(
   "tui"
   "workspace"
   "workspace-attestations"
+  "workspace-bizzy"
+  "workspace-cody"
 )
 
 if ! diff -u \
@@ -143,6 +182,11 @@ fi
 
 if find "$reference_root" -path '*/sessions/*.json' ! -name '*.example.json' -print -quit | grep -q .; then
   echo "real-looking session JSON found; only *.example.json files are allowed" >&2
+  exit 1
+fi
+
+if find "$reference_root" -path '*/memory/*' -type f ! -name 'README.md' ! -name '*.example.md' -print -quit | grep -q .; then
+  echo "real-looking memory file found; only README.md and *.example.md files are allowed" >&2
   exit 1
 fi
 

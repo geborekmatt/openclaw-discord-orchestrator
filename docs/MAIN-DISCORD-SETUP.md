@@ -12,7 +12,7 @@ Discord -> Main
 
 The example configuration registers one agent named `main` and marks it as the default. The `bindings` list is empty, so Discord falls back to the default agent instead of routing directly to another agent.
 
-Later milestones can add private specialists without giving them Discord bindings. Main will remain the public interface.
+Private specialists are registered without Discord bindings. Main remains the public interface while Cody and Bizzy maintain their own internal workspaces.
 
 ## Bot token
 

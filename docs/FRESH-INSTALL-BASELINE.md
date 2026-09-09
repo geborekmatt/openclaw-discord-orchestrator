@@ -53,4 +53,4 @@ skill-workshop/             state/         tmp/
 tui/                        workspace/     workspace-attestations/
 ```
 
-Specialist workspaces such as `workspace-cody/` and `workspace-bizzy/` are intentionally deferred to later issues because they are part of this project's orchestration architecture, not the installation baseline.
+Specialist workspaces such as `workspace-cody/` and `workspace-bizzy/` are not part of the installation baseline. They are added separately as part of this project's orchestration architecture.
